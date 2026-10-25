@@ -1,0 +1,3 @@
+#:schema https://raw.githubusercontent.com/ianflanagan1/repo-tools/main/schema/ianf-repo-tools.v1.json
+version = 1
+integration = "local"

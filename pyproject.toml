@@ -1,0 +1,30 @@
+[project]
+name = "repo-settings"
+version = "0.1.0"
+description = "Reads and writes the settings a repository's team shares, in the copy each tool says: a worktree's, a branch's or the code host's."
+requires-python = ">=3.13"
+dependencies = [
+    "git-default-branch",
+    "tomlkit>=0.15.2",
+]
+
+[tool.uv.sources]
+cli-kit = { git = "https://github.com/ianflanagan1/cli-kit", branch = "main" }
+git-default-branch = { path = "../git-default-branch", editable = true }
+
+[dependency-groups]
+dev = ["pytest>=8", "ruff>=0.6"]
+
+[build-system]
+requires = ["uv_build>=0.9,<0.14"]
+build-backend = "uv_build"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = ["--import-mode=importlib"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
