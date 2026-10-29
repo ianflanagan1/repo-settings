@@ -34,7 +34,7 @@ def test_the_main_worktree_is_found_from_inside_itself(repos):
 
 def test_a_bare_repository_has_no_main_worktree(repos, tmp_path: Path):
     bare = tmp_path / "bare.git"
-    repos.git("clone", "-q", "--bare", repos.repo("origin", "main"), bare)
+    repos.git("clone", "--quiet", "--bare", repos.repo("origin", "main"), bare)
     assert main_worktree(bare) is None
 
 
@@ -53,6 +53,6 @@ def test_every_worktree_leaves_out_one_whose_directory_is_gone(repos):
 
 def test_every_worktree_of_a_bare_repository_is_its_linked_ones(repos, tmp_path: Path):
     bare = tmp_path / "bare.git"
-    repos.git("clone", "-q", "--bare", repos.repo("origin", "main"), bare)
+    repos.git("clone", "--quiet", "--bare", repos.repo("origin", "main"), bare)
     linked = repos.worktree(bare, "repo-wt1")
     assert every_worktree(bare) == (linked,)

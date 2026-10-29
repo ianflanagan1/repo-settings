@@ -345,7 +345,7 @@ def _on_default_branch(directory: Path, file: str) -> Text | Missing | Unlocatab
     branch = git_default_branch.choose(facts)
     if branch is None:
         return Unlocatable(git_default_branch.why_unknown(facts), ())
-    if _git(directory, "rev-parse", "--verify", "-q", f"refs/heads/{branch}") is None:
+    if _git(directory, "rev-parse", "--verify", "--quiet", f"refs/heads/{branch}") is None:
         return Unlocatable(
             f"There's no local {branch} branch to read {file} from.",
             (f"{branch} is the default branch: create it, as git branch {branch} <start>.",),

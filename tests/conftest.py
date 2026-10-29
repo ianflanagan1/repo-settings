@@ -38,15 +38,15 @@ class Repos:
     def repo(self, name: str, branch: str) -> Path:
         """A repository with one commit, on branch."""
         repo = self.tmp_path / name
-        git("init", "-q", "-b", branch, repo)
-        git("-C", repo, "commit", "-q", "--allow-empty", "-m", "init")
+        git("init", "--quiet", "--initial-branch", branch, repo)
+        git("-C", repo, "commit", "--quiet", "--allow-empty", "--message", "init")
         return repo.resolve()
 
     def commit(self, repo: Path, file: str, text: str) -> None:
         """Writes file in repo and commits it."""
         self.write(repo, file, text)
         git("-C", repo, "add", file)
-        git("-C", repo, "commit", "-q", "-m", f"Change {file}")
+        git("-C", repo, "commit", "--quiet", "--message", f"Change {file}")
 
     @staticmethod
     def write(repo: Path, file: str, text: str) -> None:
@@ -56,7 +56,7 @@ class Repos:
     def worktree(self, repo: Path, name: str) -> Path:
         """A linked worktree of repo, detached at its HEAD."""
         path = self.tmp_path / name
-        git("-C", repo, "worktree", "add", "-q", "--detach", path)
+        git("-C", repo, "worktree", "add", "--quiet", "--detach", path)
         return path.resolve()
 
 

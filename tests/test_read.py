@@ -68,7 +68,7 @@ def test_the_main_worktree_is_read_from_a_linked_one(repos):
 def test_the_default_branch_is_read_as_committed_whatever_is_on_disk(repos):
     repo = repos.repo("repo", "main")
     repos.commit(repo, FILE, thing("red"))
-    repos.git("-C", repo, "switch", "-q", "-c", "spike")
+    repos.git("-C", repo, "switch", "--quiet", "--create", "spike")
     repos.commit(repo, FILE, thing("green"))
     repos.write(repo, FILE, thing("blue"))
     read = repo_settings.read(Source.LOCAL_DEFAULT_BRANCH, repo, "thing", Version)
@@ -80,7 +80,7 @@ def test_the_default_branch_is_read_as_committed_whatever_is_on_disk(repos):
 def test_the_default_branch_is_the_one_git_default_branch_tells(repos):
     repo = repos.repo("repo", "main")
     repos.commit(repo, FILE, thing("red"))
-    repos.git("-C", repo, "switch", "-q", "-c", "develop")
+    repos.git("-C", repo, "switch", "--quiet", "--create", "develop")
     repos.commit(repo, FILE, thing("green"))
     repos.git("-C", repo, "config", "default-branch.name", "develop")
     assert (
@@ -145,9 +145,9 @@ def test_a_default_branch_nothing_names_says_how_to_name_it(repos):
 def test_a_default_branch_with_no_local_branch_says_so(repos, tmp_path: Path):
     origin = repos.repo("origin", "main")
     clone = tmp_path / "clone"
-    repos.git("clone", "-q", origin, clone)
-    repos.git("-C", clone, "switch", "-q", "-c", "spike")
-    repos.git("-C", clone, "branch", "-q", "-D", "main")
+    repos.git("clone", "--quiet", origin, clone)
+    repos.git("-C", clone, "switch", "--quiet", "--create", "spike")
+    repos.git("-C", clone, "branch", "--quiet", "--delete", "--force", "main")
     read = repo_settings.read(Source.LOCAL_DEFAULT_BRANCH, clone, "thing", Version)
     assert isinstance(read, Unlocatable)
     assert read.message == f"There's no local main branch to read {FILE} from."
