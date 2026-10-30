@@ -5,7 +5,7 @@ requires-python = ">=3.13"
 [[package]]
 name = "cli-kit"
 version = "0.1.0"
-source = { git = "https://github.com/ianflanagan1/cli-kit?tag=v0.1.0#22ce8408a536bd3c3998abfe133f52d3ca76d8d3" }
+source = { git = "https://github.com/ianflanagan1/cli-kit?branch=main#dcad32d5b218f3b6e2d95e94e5edd86058cdb839" }
 
 [[package]]
 name = "colorama"
@@ -19,7 +19,7 @@ wheels = [
 [[package]]
 name = "git-default-branch"
 version = "0.1.0"
-source = { git = "https://github.com/ianflanagan1/git-default-branch?tag=v0.1.0#beb708c3f4af04f5aad90256f99aa787c7de9a43" }
+source = { git = "https://github.com/ianflanagan1/git-default-branch?branch=main#bcb2f8d18727edada7ae93b3ba271a02a270204f" }
 dependencies = [
     { name = "cli-kit" },
 ]
@@ -93,7 +93,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "git-default-branch", git = "https://github.com/ianflanagan1/git-default-branch?tag=v0.1.0" },
+    { name = "git-default-branch", git = "https://github.com/ianflanagan1/git-default-branch?branch=main" },
     { name = "tomlkit", specifier = ">=0.15.2" },
 ]
 
