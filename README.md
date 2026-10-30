@@ -97,7 +97,7 @@ for copy in repo_settings.write(
     Path.cwd(),
     "repo-tools",
     NewFile(Version.V1, SCHEMA),
-    [Assignment((), "integration", "local")],
+    [Assignment((), "integration", "direct")],
 ):
     match copy:
         case Written():
