@@ -130,5 +130,5 @@ uv reads sources only from the project it's syncing, so a tool names git-default
 
 ```sh
 cd ~/projects/cli/repo-settings
-devbox run setup   # uv sync, building .venv
+devbox run -- task setup   # uv sync, building .venv
 ```
